@@ -37,7 +37,7 @@ Once you are finished developing you can stop the db by running the following co
 npm run db:stop
 ```
 
-This project has been configured to run with the following Postgres configuration:
+This project has been configured to run with the following Postgres configuration. You can modify these to suit your needs by editing the [`docker-compose.yml`](docker-compose.yml) file.
 
 ```
 - HOST=localhost
