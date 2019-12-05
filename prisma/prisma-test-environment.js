@@ -6,6 +6,8 @@ const nanoid = require("nanoid");
 const util = require("util");
 const exec = util.promisify(require("child_process").exec);
 
+const prismaBinary = "./node_modules/.bin/prisma2";
+
 class PrismaTestEnvironment extends NodeEnvironment {
   constructor(config) {
     super(config);
@@ -23,8 +25,8 @@ class PrismaTestEnvironment extends NodeEnvironment {
     process.env.POSTGRES_URL = this.connectionString;
     this.global.process.env.POSTGRES_URL = this.connectionString;
 
-    // Run the migrations to ensure our schema has the required structuree
-    await exec("prisma2 lift up");
+    // Run the migrations to ensure our schema has the required structure
+    await exec(`${prismaBinary} lift up`);
 
     return super.setup();
   }
