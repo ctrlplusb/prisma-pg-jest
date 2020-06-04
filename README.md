@@ -1,4 +1,4 @@
-# Prisma2 + Postgres + Jest
+# Prisma + Postgres + Jest
 
 This example showcases how you can configure your Jest environment in order to perform integration tests against applications utilising Prisma and Postgres.
 
