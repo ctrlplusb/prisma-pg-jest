@@ -1,25 +1,25 @@
-import { Photon } from "@prisma/photon";
+import { PrismaClient } from "@prisma/client";
 
-const photon = new Photon();
+const client = new PrismaClient();
 
 afterAll(async () => {
-  await photon.disconnect();
+  await client.disconnect();
 });
 
 it("cannot create a user with an email address that is already in user", async () => {
   // ARRANGE
-  await photon.users.create({
+  await client.user.create({
     data: {
-      email: "foo@bar.com"
-    }
+      email: "foo@bar.com",
+    },
   });
 
   // ACT + ASSERT
   expect(
-    photon.users.create({
+    client.user.create({
       data: {
-        email: "foo@bar.com"
-      }
+        email: "foo@bar.com",
+      },
     })
   ).rejects.toThrow();
 });

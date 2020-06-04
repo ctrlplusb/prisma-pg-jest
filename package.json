@@ -1,29 +1,30 @@
 {
   "private": true,
-  "name": "prisma2-pg-jest",
+  "name": "prisma-pg-jest",
   "license": "MIT",
-  "devDependencies": {
-    "@types/jest": "^24.0.23",
-    "dotenv-cli": "^3.1.0",
-    "jest": "^24.9.0",
-    "jest-environment-node": "^24.9.0",
-    "nanoid": "^2.1.7",
-    "pg": "^7.14.0",
-    "prisma2": "^2.0.0-preview018.2",
-    "ts-jest": "^24.2.0",
-    "ts-node": "8.5.4",
-    "typescript": "3.7.3"
-  },
   "scripts": {
     "db:start": "docker-compose up -d",
     "db:stop": "docker-compose down",
-    "dev": "dotenv prisma2 dev",
-    "generate": "dotenv prisma2 generate",
+    "generate": "dotenv prisma generate",
+    "migrate:save": "dotenv prisma migrate save -- --experimental",
+    "migrate:up": "dotenv prisma migrate up -- --experimental",
     "postinstall": "npm run generate",
     "seed": "ts-node prisma/seed",
     "test": "jest"
   },
   "dependencies": {
-    "@prisma/photon": "2.0.0-preview018.2"
+    "@prisma/client": "^2.0.0-beta.8"
+  },
+  "devDependencies": {
+    "@prisma/cli": "^2.0.0-beta.8",
+    "@types/jest": "^25.2.3",
+    "dotenv-cli": "^3.1.0",
+    "jest": "^26.0.1",
+    "jest-environment-node": "^26.0.1",
+    "nanoid": "^3.1.9",
+    "pg": "^8.2.1",
+    "ts-jest": "^26.1.0",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.3"
   }
 }

@@ -2,7 +2,7 @@
 
 const { Client } = require("pg");
 const NodeEnvironment = require("jest-environment-node");
-const nanoid = require("nanoid");
+const { nanoid } = require("nanoid");
 const util = require("util");
 const exec = util.promisify(require("child_process").exec);
 
@@ -26,7 +26,7 @@ class PrismaTestEnvironment extends NodeEnvironment {
     this.global.process.env.POSTGRES_URL = this.connectionString;
 
     // Run the migrations to ensure our schema has the required structure
-    await exec(`${prismaBinary} lift up`);
+    await exec(`${prismaBinary} migrate up --experimental`);
 
     return super.setup();
   }
@@ -34,7 +34,7 @@ class PrismaTestEnvironment extends NodeEnvironment {
   async teardown() {
     // Drop the schema after the tests have completed
     const client = new Client({
-      connectionString: this.connectionString
+      connectionString: this.connectionString,
     });
     await client.connect();
     await client.query(`DROP SCHEMA IF EXISTS "${this.schema}" CASCADE`);
