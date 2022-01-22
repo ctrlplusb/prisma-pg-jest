@@ -21,7 +21,7 @@
     "dotenv-cli": "^3.1.0",
     "jest": "^26.0.1",
     "jest-environment-node": "^26.0.1",
-    "nanoid": "^3.1.9",
+    "nanoid": "^3.1.31",
     "pg": "^8.2.1",
     "ts-jest": "^26.1.0",
     "ts-node": "^8.10.2",
